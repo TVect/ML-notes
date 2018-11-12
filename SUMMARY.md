@@ -1,3 +1,5 @@
-# Table of content
+# Summary
 
-* [First Chapter](chapter1.md)
+* [Introduction](README.md)
+* [Part I - 统计机器学习](part-i-tong-ji-ji-qi-xue-xi.md)
+

@@ -1,3 +1,3 @@
-# My Awesome Book
+# ML notes
 
-This file file serves as your book's preface, a great place to describe your book's content and ideas.
+这里会断断续续的记录机器学习相关的笔记.
