@@ -236,3 +236,5 @@ $$\hat{p}(u) = \int_{\hat{p}(x) \geq u} \frac{1}{Z_p} dx$$
 - PRML chapter 11. SAMPLING METHODS
 
 - [有道云笔记上的版本](http://note.youdao.com/noteshare?id=4034e12c81b04fa16f0148f95169e522&sub=ACF2A85FBD9040518D68A63076C99D56 "有道云笔记上的版本")
+
+- [博客版本](http://blog.tvect.cc/archives/318)
