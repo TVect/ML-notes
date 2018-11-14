@@ -4,6 +4,7 @@
 
 ---
 
+
 # Introduction
 目的是要 evaluate $$ E[f] = \int_{p(z)} f(z) dz = \int f(z) p(z) dz$$,
 
@@ -152,7 +153,7 @@ $$\frac{Z_p}{Z_q} = \frac{1}{Z_q} \int \tilde{p}(z) dz = \int \frac {\tilde{p}(z
 要证明 MH 的有效性，只要证明 detail balance 成立即可. 实际上有：
 
 $$
-\\begin{aligned}
+\begin{aligned}
 p(z)q(z'|z)A(z', z) & = p(z) q(z'|z) \min (1, \frac{\tilde{p}(z')q(z|z')}{\tilde{p}(z)q(z'|z_i)} )
 \\\\
 & = \min ( p(z)q(z'|z),  p(z')q(z|z') )
@@ -160,8 +161,10 @@ p(z)q(z'|z)A(z', z) & = p(z) q(z'|z) \min (1, \frac{\tilde{p}(z')q(z|z')}{\tilde
 & = p(z')q(z|z') \min (1, \frac{p(z)q(z'|z)}{p(z')q(z|z')})
 \\\\
 & = p(z')q(z|z')A(z, z')
-\\end{aligned}
+\end{aligned}
 $$
+
+
 
 注意到，在 q 是对称的情况下，即简化为 Metropolis algorithm，此时每一步的接受率为 $$ A(z', z) = \min (1, \frac{\tilde{p}(z')}{\tilde{p}(z)}) $$
 
@@ -214,7 +217,7 @@ Gibbs Sampling中有如下性质：
 
 为了从 $$p(x) = \frac{\hat{p}(x)}{Z_p}$$ 中采样(其中仅可以 evaluate unnormalized distribution $$\hat{p}(x)$$ ), 引入一个新的变量 $$u$$, 构造一个联合分布 $$\hat{p}(x, u)$$:
 
-![](http://blog.tvect.cc/wp-content/uploads/2018/08/slice.png)
+![](/assets/slice.png)
 
 容易知道，对上述联合分布求边缘分布有：
 
