@@ -67,7 +67,11 @@ In practice, we substitute a target for $$v_\pi(s)$$
 
     - Backward view linear TD(λ):
     
-
+        $$ \delta_t = R_{t+1} + \gamma \hat{v}(S_{t+1}; w) − \hat{v}(St; w) $$
+        
+        $$ E_t = \gamma \lambda E_{t−1} + x(S_t) $$
+        
+        $$ \triangle w = \alpha \delta_t E_t $$
 
 
 ## Incremental Control Algorithms
