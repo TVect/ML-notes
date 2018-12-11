@@ -41,37 +41,37 @@ $$ \triangle w = \alpha (v_{\pi}(S) - \hat{v}(S; w)) x(S)$$
 
 In practice, we substitute a target for $$v_\pi(s)$$
 
-- **For MC, the target is the return $$G_t$$**
+### For MC, the target is the return $$G_t$$
 
-    $$ \triangle w = \alpha (G_t − \hat{v}(S_t; w)) \triangledown_w \hat{v}(S_t; w)$$
+$$ \triangle w = \alpha (G_t − \hat{v}(S_t; w)) \triangledown_w \hat{v}(S_t; w)$$
 
-    Return Gt is an unbiased, noisy sample of true value $$v_\pi(S_t)$$
+Return Gt is an unbiased, noisy sample of true value $$v_\pi(S_t)$$
     
-    Monte-Carlo evaluation converges to a local optimum, even when using non-linear value function approximation.
+Monte-Carlo evaluation converges to a local optimum, even when using non-linear value function approximation.
 
-- **For TD(0), the target is the TD target $$R_{t+1 }+ \gamma \hat{v}(S_{t+1}; w)$$**
+### For TD(0), the target is the TD target $$R_{t+1 }+ \gamma \hat{v}(S_{t+1}; w)$$
 
-    $$ \triangle w = \alpha (R_{t+1 }+ \gamma \hat{v}(S_{t+1}; w) − \hat{v}(S_t; w)) \triangledown_w \hat{v}(S_t; w) $$
+$$ \triangle w = \alpha (R_{t+1 }+ \gamma \hat{v}(S_{t+1}; w) − \hat{v}(S_t; w)) \triangledown_w \hat{v}(S_t; w) $$
 
-    The TD(0)-target is a biased sample of true value $$v_\pi(S_t)$$
+The TD(0)-target is a biased sample of true value $$v_\pi(S_t)$$
 
-    Linear TD(0) converges (close) to global optimum.
+Linear TD(0) converges (close) to global optimum.
     
-- **For TD(λ), the target is the λ-return $$G_t^{\lambda}$$**
+### For TD(λ), the target is the λ-return $$G_t^{\lambda}$$
 
-    The λ-return is also a biased sample of true value $$v_\pi(S_t)$$.
+The λ-return is also a biased sample of true value $$v_\pi(S_t)$$.
 
-    - Forward view linear TD(λ):
+- Forward view linear TD(λ):
         
-        $$ \triangle w = \alpha (G_t^{\lambda} − \hat{v}(S_t; w)) \triangledown_w \hat{v}(S_t; w) $$
+    $$ \triangle w = \alpha (G_t^{\lambda} − \hat{v}(S_t; w)) \triangledown_w \hat{v}(S_t; w) $$
 
-    - Backward view linear TD(λ):
+- Backward view linear TD(λ):
     
-        $$ \delta_t = R_{t+1} + \gamma \hat{v}(S_{t+1}; w) − \hat{v}(St; w) $$
+    $$ \delta_t = R_{t+1} + \gamma \hat{v}(S_{t+1}; w) − \hat{v}(St; w) $$
         
-        $$ E_t = \gamma \lambda E_{t−1} + x(S_t) $$
+    $$ E_t = \gamma \lambda E_{t−1} + x(S_t) $$
         
-        $$ \triangle w = \alpha \delta_t E_t $$
+    $$ \triangle w = \alpha \delta_t E_t $$
 
 
 ## Incremental Control Algorithms
