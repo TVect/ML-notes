@@ -76,5 +76,66 @@ The λ-return is also a biased sample of true value $$v_\pi(S_t)$$.
 
 ## Incremental Control Algorithms
 
+**Policy evaluation**: Approximate policy evaluation, $$ \hat{q}(·, ·; w) \approx q_\pi $$
+
+与前面的 Incremental Prediction Algorithms 类似, 只不过这里是对 $$ \hat{q}(·, ·; w) $$ 操作.
+
+**Policy improvement**: $$\epsilon$$-greedy policy improvement
+
+## Convergence
+
+- **Convergence of Prediction Algorithms**
+
+![](/assets/convergence-prediction.png)
+
+- **Convergence of Control Algorithms**
+
+![](/assets/convergence-control.png)
+
+
 # Batch Methods
+
+Gradient descent is simple and appealing, but it is not sample efficient.
+
+Batch methods seek to find the best fitting value function given the agent’s experience ("training data").
+
+## Least Squares Prediction
+
+**Stochastic Gradient Descent with Experience Replay**
+
+Given experience consisting of < state; value > pairs
+
+$$ D = \{ \left \langle s_1, v_1^\pi \right \langle, ..., \left \langle s_T, v_T^\pi \right \langle \}$$
+
+Repeat:
+
+1. Sample state, value from experience
+
+    $$ \left \langle s, v^\pi \right \langle \sim D $$
+
+2. Apply stochastic gradient descent update
+
+    $$ \triangle w = \alpha (v^\pi − \hat{v}(S_t; w)) \triangledown_w \hat{v}(S_t; w)$$
+
+Converges to least squares solution: $$ w^\pi = \arg \min LS(w)$$
+
+## Least Squares Control
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
