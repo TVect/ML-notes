@@ -101,23 +101,57 @@ Batch methods seek to find the best fitting value function given the agent’s e
 
 ## Least Squares Prediction
 
-**Stochastic Gradient Descent with Experience Replay**
+### **Stochastic Gradient Descent with Experience Replay**
 
 Given experience consisting of < state; value > pairs
 
-$$ D = \{ \left \langle s_1, v_1^\pi \right \langle, ..., \left \langle s_T, v_T^\pi \right \langle \}$$
+$$ D = \{ < s_1, v_1^\pi >, ..., < s_T, v_T^\pi > \}$$
 
 Repeat:
 
 1. Sample state, value from experience
 
-    $$ \left \langle s, v^\pi \right \langle \sim D $$
+    $$ < s, v^\pi > \sim D $$
 
 2. Apply stochastic gradient descent update
 
-    $$ \triangle w = \alpha (v^\pi − \hat{v}(S_t; w)) \triangledown_w \hat{v}(S_t; w)$$
+    $$ \triangle w = \alpha (v^\pi − \hat{v}(S; w)) \triangledown_w \hat{v}(S; w)$$
 
-Converges to least squares solution: $$ w^\pi = \arg \min LS(w)$$
+Converges to least squares solution: $$ w^\pi = \arg \min LS(w) = \arg \min \sum (v_t^\pi − \hat{v}(S_t; w))^2$$
+
+
+### **Experience Replay in Deep Q-Networks (DQN)**
+
+DQN uses **experience replay** and **fixed Q-targets**
+
+- Take action at according to $$\epsilon$$-greedy policy
+
+- Store transition $$(s_t, a_t, r_{t+1}, s_{t+1})$$ in replay memory D
+
+- Sample random mini-batch of transitions $$(s, a, r, s^\prime)$$ from D
+
+- Compute Q-learning targets w.r.t. old, fixed parameters $$w^−$$
+
+- Optimise MSE between Q-network and Q-learning targets
+
+$$L_i(w_i) = E_{s,a,r,s^\prime \sim D_i} [(r + \gamma \max_{a^\prime} Q(s^\prime, a^\prime; w_i^−) − Q(s, a; w_i)^2]$$
+
+- Using variant of stochastic gradient descent
+
+### **Linear Least Squares Prediction**
+
+Experience replay finds least squares solution, but it may take many iterations.
+
+Using linear value function approximation $$ \hat{v}(s; w) = x(s)^T w$$, We can solve the least squares solution directly.
+
+求导数, 并令导数为0, 有:
+
+$$ \alpha \sum_{i=1}^T (v_t^{\pi} - x(s_t)^T w) x(s_t) = 0 $$
+
+$$ w = (\sum x(s_t) x(s_t)^T)^{-1} \sum x(s_t)v_t^\pi $$
+
+For N features, direct solution time is $$O(N^3)$$. Incremental solution time is $$O(N^2)$$ using Shermann-Morrison.
+
 
 ## Least Squares Control
 
