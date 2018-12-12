@@ -134,7 +134,7 @@ DQN uses **experience replay** and **fixed Q-targets**
 
 - Optimise MSE between Q-network and Q-learning targets
 
-$$L_i(w_i) = E_{s,a,r,s^\prime \sim D_i} [(r + \gamma \max_{a^\prime} Q(s^\prime, a^\prime; w_i^−) − Q(s, a; w_i)^2]$$
+    $$L_i(w_i) = E_{s,a,r,s^\prime \sim D_i} [(r + \gamma \max_{a^\prime} Q(s^\prime, a^\prime; w_i^−) − Q(s, a; w_i)^2]$$
 
 - Using variant of stochastic gradient descent
 
