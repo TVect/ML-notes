@@ -8,4 +8,5 @@
 * [Reinforcement Learning](rl.md)
   * [RL Course by D.Silver](rl/rl.md)
     * [Lecture06  Value Function Approximation](rl/rl/lecture06-value-function-approximation.md)
+    * [Lecture07 Policy Gradient](rl/rl/lecture07-policy-gradient.md)
 
