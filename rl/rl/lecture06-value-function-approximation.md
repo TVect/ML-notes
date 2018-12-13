@@ -186,7 +186,7 @@ use the same idea as Q-learning:
 
 - Consider alternative successor action $$A^\prime = \pi_{new}(S_{t+1})$$
 
-- Update \hat{q}(S_t, A_t; w) towards value of alternative action $$R_{t+1} + \gamma \hat{q}(S_{t+1}, A^\prime; w))$$
+- Update $$\hat{q}(S_t, A_t; w)$$ towards value of alternative action $$R_{t+1} + \gamma \hat{q}(S_{t+1}, A^\prime; w))$$
 
 
 **LSTDQ algorithm**
