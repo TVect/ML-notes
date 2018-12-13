@@ -153,6 +153,21 @@ $$ w = (\sum x(s_t) x(s_t)^T)^{-1} \sum x(s_t)v_t^\pi $$
 For N features, direct solution time is $$O(N^3)$$. Incremental solution time is $$O(N^2)$$ using Shermann-Morrison.
 
 
+In practice, We do not know true values $$v_t^\pi$$, and our "training data" must use noisy or biased samples of $$v_t^\pi$$.
+
+- **LSMC** 
+
+    Least Squares Monte-Carlo uses return $$v_t^\pi \approx G_t$$
+
+- **LSTD** 
+    
+    Least Squares Temporal-Difference uses TD target $$v_t^\pi \approx R_{t+1} + \gamma \hat{v}(S_{t+1}; w)$$
+
+- **LSTD(λ)** 
+
+    Least Squares TD(λ) uses λ-return $$ v_t^\pi \approx G_t^\lambda $$
+
+
 ## Least Squares Control
 
 
