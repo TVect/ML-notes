@@ -84,11 +84,15 @@ Policy gradient theorem applies to start state objective, average reward and ave
 
 > Theorem
 For any differentiable policy $$\pi_\theta(s,a)$$,
-for any of the policy objective functions $$J = J_1$$, $$J_{avR}$$; or $$\frac{1}{1-\gamma} J_{avV}$$,
+for any of the policy objective functions $$J = J_1$$, $$J_{avR}$$, or $$\frac{1}{1-\gamma} J_{avV}$$,
 the policy gradient is
 $$\triangledown_\theta J(\theta) = E_{\pi_{\theta}} [\triangledown_\theta \log \pi_\theta(s, a) r]$$
 
 **Monte-Carlo Policy Gradient (REINFORCE)**
+
+Using return $$v_t$$ as an unbiased sample of $$Q^{\pi_\theta}(s_t, a_t)$$.
+
+![](/assets/mc-pg.png)
 
 # Actor-Critic Policy Gradient
 
