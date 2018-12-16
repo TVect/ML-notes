@@ -86,7 +86,7 @@ Policy gradient theorem applies to start state objective, average reward and ave
 For any differentiable policy $$\pi_\theta(s,a)$$,
 for any of the policy objective functions $$J = J_1$$, $$J_{avR}$$, or $$\frac{1}{1-\gamma} J_{avV}$$,
 the policy gradient is
-$$\triangledown_\theta J(\theta) = E_{\pi_{\theta}} [\triangledown_\theta \log \pi_\theta(s, a) r]$$
+$$\triangledown_\theta J(\theta) = E_{\pi_{\theta}} [\triangledown_\theta \log \pi_\theta(s, a) Q^{\pi_\theta}(s, a)]$$
 
 **Monte-Carlo Policy Gradient (REINFORCE)**
 
@@ -95,6 +95,60 @@ Using return $$v_t$$ as an unbiased sample of $$Q^{\pi_\theta}(s_t, a_t)$$.
 ![](/assets/mc-pg.png)
 
 # Actor-Critic Policy Gradient
+
+Monte-Carlo policy gradient still has high variance, we can use a critic to estimate the action-value function: $$ Q_w(s, a) \approx Q^{\pi_\theta}(s, a)$$.
+
+**Actor-critic algorithms** maintain two sets of parameters:
+
+- **Critic** Updates action-value function parameters $$w$$
+
+- **Actor** Updates policy parameters $$\theta$$, in direction suggested by critic.
+
+Actor-critic algorithms follow an approximate policy gradient:
+
+$$\triangledown_\theta J(\theta) = E_{\pi_{\theta}} [\triangledown_\theta \log \pi_\theta(s, a) Q_w(s, a)]$$
+
+$$\triangle \theta  = \alpha \triangledown_\theta \log \pi_\theta(s, a) Q_w(s, a)$$
+
+
+The critic is solving a familiar problem: policy evaluation.
+
+This problem can by solved by Monte-Carlo policy evaluation, Temporal-Difference learning or TD(λ).
+
+**Action-Value Actor-Critic**
+
+![](/assets/qac.png)
+
+**Bias in Actor-Critic Algorithms**
+
+Approximating the policy gradient introduces bias.
+
+A biased policy gradient may not find the right solution
+
+Luckily, if we choose value function approximation carefully, then we can avoid introducing any bias, i.e. we can still follow the exact policy gradient.
+
+**Compatible Function Approximation**
+
+> Theorem (Compatible Function Approximation Theorem)
+If the following two conditions are satisfied:
+1. Value function approximator is compatible to the policy $$\triangledown_w Q_w(s, a) = \triangle_\theta \log \pi_{\theta}(s, a)$$
+2. Value function parameters w minimise the mean-squared error $$ \epsilon = E_{\pi_\theta} (Q^{\pi_\theta}(s, a) − Q_w(s, a))^2$$
+Then the policy gradient is exact:
+$$\triangle_\theta J(\theta) = E_{\pi_\theta} [\triangle_\theta \log \pi_\theta(s, a) Q_w(s, a)]$$
+
+**Reducing Variance Using a Baseline**
+
+We can subtract a baseline function B(s) from the policy gradient to reduce variance without changing expectation.
+
+A good baseline is the state value function $$B(s) = V_{\pi_\theta}(s)$$.
+
+So we can rewrite the policy gradient using the advantage function $$A_{\pi_\theta}(s, a) $$:
+
+$$A_{\pi_\theta}(s, a) = Q_{\pi_\theta}(s, a) − V_{\pi_\theta}(s)$$
+
+$$\triangle_\theta J(\theta) = E_{\pi_\theta} [\triangledown_\theta \log \pi_\theta(s, a) A_{\pi_\theta}(s, a)]$$
+
+**Natural Policy Gradient** ?????
 
 
 
