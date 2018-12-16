@@ -68,3 +68,9 @@ Alternatively, 可以记下每个 experience tuple $$ \left \langle S_t, A_t, R_
 - **模拟 Simulation**：从 C 开始运行一个模拟的输出，直到博弈游戏结束。
 
 - **反向传播** Backpropagation：用模拟的结果输出更新当前行动序列。
+
+---
+
+# 参考资料
+
+- [mcts.ai](http://mcts.ai/) 包含有一些 mcts 的简单实现和例子.

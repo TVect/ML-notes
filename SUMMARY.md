@@ -10,4 +10,5 @@
     * [Lecture06  Value Function Approximation](rl/rl/lecture06-value-function-approximation.md)
     * [Lecture07 Policy Gradient](rl/rl/lecture07-policy-gradient.md)
     * [Lecture08 Integrating Learning and Planning](rl/rl/lecture08-integrating-learning-and-planning.md)
+    * [Lecture 09 Exploration and Exploitation](rl/rl/lecture-09-exploration-and-exploitation.md)
 
