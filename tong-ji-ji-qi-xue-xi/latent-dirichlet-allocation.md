@@ -103,8 +103,8 @@ $$
 \begin{aligned}
 p(w | z; \beta) & = \int p(w|z, \varphi) p(\varphi | \boldsymbol{\beta}) d\varphi \\
 & = \int \prod_{i=1}^{M} \prod_{j=1}^{N} p(w_{i,j}|z_{i,j}, \varphi) \prod_{k=1}^{K} p(\varphi_k | \boldsymbol{\beta}) d\varphi \\
-& = \int \prod_{i=1}^{M} \prod_{j=1}^{N} \varphi_{z_{i,j}, w_{i,j}} \prod_{k=1}^{K} \frac{1}{\Delta(\boldsymbol{\beta})} \varphi_{k,v}^{\beta_v-1} d \varphi \\
-& = \int \prod_{k=1}^{K} \frac{1}{\Delta(\boldsymbol{\beta})} \varphi_{k,v}^{\beta_v+n_{(\cdot ),v}^{k}-1} d \varphi \\
+& = \int \prod_{i=1}^{M} \prod_{j=1}^{N} \varphi_{z_{i,j}, w_{i,j}} \prod_{k=1}^{K} \frac{1}{\Delta(\boldsymbol{\beta})} \prod_{v} \varphi_{k,v}^{\beta_v-1} d \varphi \\
+& = \int \prod_{k=1}^{K} \frac{1}{\Delta(\boldsymbol{\beta})} \prod_v \varphi_{k,v}^{\beta_v+n_{(\cdot ),v}^{k}-1} d \varphi \\
 & = \prod_{k=1}^{K} \frac{\Delta(\beta+n_{(\cdot ),v}^{k})}{\Delta(\beta)}
 \end{aligned}
 $$
@@ -112,6 +112,9 @@ $$
 $$
 \begin{aligned}
 p(z | \alpha) & = \int p(z | \theta) p(\theta | \alpha) d\theta \\
+& = \int \prod_{i=1}^{M} \prod_{j=1}^{N} p(z_{ij}|\theta) \prod_{m=1}^{M} p(\theta_m | \alpha) d \theta \\
+& = \int \prod_{i=1}^{M} \prod_{j=1}^{N} \theta_{i, z_{i,j}} \prod_{m=1}^{M} \frac{1}{\Delta(\alpha)} \prod_{k} \theta_{m, k}^{\alpha_k-1} d \theta \\
+& = \int \prod_{i=1}^{M} \frac{1}{\Delta(\alpha)} \prod_{k} \theta_{m, k}^{\alpha_k+n_{m,(\cdot )}^{k}-1} d \theta \\
 & = \prod_{i=1}^{M} \frac{\Delta(\alpha+n_{m,(\cdot )}^{k})}{\Delta(\alpha)}
 \end{aligned}
 $$
