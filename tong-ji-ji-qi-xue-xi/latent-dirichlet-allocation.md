@@ -88,6 +88,45 @@ LDA 模型训练完成之后, 可以对新来的文档 new document 做 topic �
 
 对于新的文档， 我们只要认为 Gibbs Sampling 公式中的 $$\hat{φ}_{kt}$$ 部分是稳定不变的，是由训练语料得到的模型提供的，所以采样过程中我们只要估计该文档的 topic 分布 $$\theta_{new}$$ 就好了。
 
+
+- 推导细节
+
+记 $$ \Delta(\boldsymbol{\alpha}) = \frac{\prod \Gamma(\alpha_i)}{\Gamma(\sum \alpha_i)} $$.
+
+$$ 
+p(z_{m,n} | z_{-(m,n)}, W) = \frac{p(W, z)} {p(W, z_{-(m,n)})} = \frac{p(W|z)p(z)} {p(W_{-(m,n)}|z_{-(m,n)}) p(w_i) p(z_{-(m,n)})} \propto \frac{p(W|z)}{p(W_{-(m,n)}|z_{-(m,n)})} \frac{p(z)}{p(z_{-(m,n)})}
+$$
+
+下面分别求 $$p(W|z)$$, $$p(z)$$ 的表达式.
+
+$$
+\begin{aligned}
+p(w | z; \beta) & = \int p(w|z, \varphi) p(\varphi | \boldsymbol{\beta}) d\varphi \\
+& = \int \prod_{i=1}^{M} \prod_{j=1}^{N} p(w_{i,j}|z_{i,j}, \varphi) \prod_{k=1}^{K} p(\varphi_k | \boldsymbol{\beta}) d\varphi \\
+& = \int \prod_{i=1}^{M} \prod_{j=1}^{N} \varphi_{z_{i,j}, w_{i,j}} \prod_{k=1}^{K} \frac{1}{\Delta(\boldsymbol{\beta})} \varphi_{k,v}^{\beta_v-1} d \varphi \\
+& = \int \prod_{k=1}^{K} \frac{1}{\Delta(\boldsymbol{\beta})} \varphi_{k,v}^{\beta_v+n_{(\cdot ),v}^{k}-1} d \varphi \\
+& = \prod_{k=1}^{K} \frac{\Delta(\beta+n_{(\cdot ),v}^{k})}{\Delta(\beta)}
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+p(z | \alpha) & = \int p(z | \theta) p(\theta | \alpha) d\theta \\
+& = \prod_{i=1}^{M} \frac{\Delta(\alpha+n_{m,(\cdot )}^{k})}{\Delta(\alpha)}
+\end{aligned}
+$$
+
+将上面表达式代入到 $$p(z_{m,n} | z_{-(m,n)}, W)$$, 有:
+
+$$
+\begin{aligned}
+p(z_{m,n} | z_{-(m,n)}, W) & \propto \frac{p(W|z)}{p(W_{-(m,n)}|z_{-(m,n)})} \frac{p(z)}{p(z_{-(m,n)})} \\
+&\propto \left(n_{m,(\cdot )}^{k,-(m,n)}+\alpha _{k}\right){\frac {n_{(\cdot ),v}^{k,-(m,n)}+\beta _{v}}{\sum _{r=1}^{V}n_{(\cdot ),r}^{k,-(m,n)}+\beta _{r}}}
+\end{aligned}
+$$
+
+
+
 # 参考资料
 
 - [Latent Dirichlet Allocation]() by David M. Blei, Andrew Y. Ng, Michael I. Jordan
