@@ -69,7 +69,9 @@ $$
 
 - **求解 $$q(z_{i, j})$$**
 
-$$ q(z_{i, j}=k) \propto exp(\psi(\alpha^*_k) - \psi(\sum_k \alpha^*_k) + \phi(\beta^*_{k, w_{i,j}}) - \phi(\sum_{v} \beta^*_{k, v}))$$
+$$ 
+q(z_{i, j}=k) \propto exp(\psi(\alpha^*_k) - \psi(\sum_k \alpha^*_k) + \phi(\beta^*_{k, w_{i,j}}) - \phi(\sum_{v} \beta^*_{k, v}))
+$$
 
 
 ## collapsed Gibbs sampling
