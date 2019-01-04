@@ -74,5 +74,22 @@ $$ q(z_{i, j}=k) \propto exp(\psi(\alpha^*_k) - \psi(\sum_k \alpha^*_k) + \phi(\
 
 ## collapsed Gibbs sampling
 
+Following is the derivation of the equations for collapsed Gibbs sampling, which means $$\varphi$$s and $$\theta$$s will be integrated out. 
 
-# 预测
+$$
+p(z_{m,n}=k | Z_{-m,n}, W; \alpha, \beta) \propto \left(n_{m,(\cdot )}^{k,-(m,n)}+\alpha _{k}\right){\frac {n_{(\cdot ),v}^{k,-(m,n)}+\beta _{v}}{\sum _{r=1}^{V}n_{(\cdot ),r}^{k,-(m,n)}+\beta _{r}}}
+$$
+
+其中, $$n_{m,(\cdot )}^{k}$$ 表示在文档 $$m$$ 中, 出现主题 $$k$$ 中词的个数, $$n_{(\cdot ),v}^{k}$$ 表示在主题 $$k$$ 中出现的词 $$v$$ 的次数. 上标中的 $$-(m,n)$$ 表示忽略标号为 $$(m, n)$$ 的词.
+
+- **new document**
+
+LDA 模型训练完成之后, 可以对新来的文档 new document 做 topic 语义分布的计算, 基本流程和 training 的过程完全类似。
+
+对于新的文档， 我们只要认为 Gibbs Sampling 公式中的 $$\hat{φ}_{kt}$$ 部分是稳定不变的，是由训练语料得到的模型提供的，所以采样过程中我们只要估计该文档的 topic 分布 $$\theta_{new}$$ 就好了。
+
+# 参考资料
+
+- [Latent Dirichlet Allocation]() by David M. Blei, Andrew Y. Ng, Michael I. Jordan
+
+- [Parameter estimation for text analysis]() by Gregor Heinrich
